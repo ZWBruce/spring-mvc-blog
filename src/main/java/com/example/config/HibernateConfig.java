@@ -46,7 +46,7 @@ public class HibernateConfig {
   @Bean
   LocalSessionFactoryBean sessionFactory() {
     Properties props = new Properties();
-    props.setProperty("hibernate.hbm2ddl.auto", "update"); // 生产环境不要使用
+    props.setProperty("hibernate.hbm2ddl.auto", "none"); // 生产环境不要使用
     props.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
     props.setProperty("hibernate.show_sql", "true");
     LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();

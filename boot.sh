@@ -13,3 +13,7 @@ if [ "$1" = "dev" ]; then
   mvn compile && mvn spring-boot:run
   # mvn compile && mvn tomcat7:run
 fi
+
+if [ "$1" = "build" ]; then
+  mvn clean package
+fi

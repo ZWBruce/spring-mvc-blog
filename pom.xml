@@ -122,16 +122,6 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.apache.tomcat.maven</groupId>
-          <artifactId>tomcat7-maven-plugin</artifactId>
-          <version>2.2</version>
-          <configuration>
-            <port>8082</port>
-            <path>/</path>
-          </configuration>
-        </plugin>
-
-        <plugin>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-maven-plugin</artifactId>
           <configuration>

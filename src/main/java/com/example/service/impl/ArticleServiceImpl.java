@@ -16,7 +16,7 @@ public class ArticleServiceImpl implements ArticleService {
   public SessionFactory sessionFactory;
 
   @Override
-  public void insertArticle(Article article) {
+  public Article insertArticle(Article article) {
     System.out.println(String.format("%s, %s, %d, %d", article.content, article.title, article.getCreatedAt(), article.getId()));
     Session session = sessionFactory.getCurrentSession();
     Transaction transaction = session.beginTransaction();
@@ -25,6 +25,7 @@ public class ArticleServiceImpl implements ArticleService {
     try {
       session.persist(article);
       transaction.commit();
+      return article;
     }catch(Exception e) {
       transaction.rollback();
       throw e;

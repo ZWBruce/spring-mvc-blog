@@ -30,7 +30,7 @@ public class AbstractEntity {
   @Column(nullable = false, updatable = false, name = "created_at")
   public Date getCreatedAt() { return createdAt; }
 
-  @Column(nullable = false)
+  @Column(nullable = true)
   public Boolean getDeleted() { return deleted; }
 
   @Column(nullable = false, name = "updated_at")
@@ -57,6 +57,7 @@ public class AbstractEntity {
   public void preInsert() {
     setCreatedAt(new Date());
     setUpdatedAt(new Date());
+    setDeleted(false);
   }
 
   @PreUpdate

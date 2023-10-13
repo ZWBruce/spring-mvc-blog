@@ -26,7 +26,7 @@ public class ArticleController {
   @PostMapping("/article")
   // @RequestBody ArticleParam param
   // @RequestParam String title, @RequestParam String content
-  public String insertArticle(@RequestBody ArticleParam param) {
+  public Resp<Article> insertArticle(@RequestBody ArticleParam param) {
     
     System.out.println(String.format("%s, %s", param.title, param.content));
     Article article = new Article();
@@ -34,25 +34,25 @@ public class ArticleController {
     article.setTitle(param.title);
     article.setContent(param.content);
 
-    articleServiceImpl.insertArticle(article);
+    Article art = articleServiceImpl.insertArticle(article);
 
-    return "success";
+    return new Resp<Article>(art);
   }
 
   @GetMapping("/article/{id}")
-  public Resp getArticle(@PathVariable("id") int id, HttpServletResponse response) throws Exception {
+  public Resp<Article> getArticle(@PathVariable("id") int id, HttpServletResponse response) throws Exception {
     Article article = articleServiceImpl.getArticle(id);
 
     if(article == null) {
       response.setStatus(HttpServletResponse.SC_NOT_FOUND);
     }
     
-    return new Resp(article);
+    return new Resp<Article>(article);
   }
 
   @GetMapping("/articles")
-  public List<Article> listArticles(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
-    return articleServiceImpl.listArticles(page, pageSize);
+  public Resp<List<Article>> listArticles(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    return new Resp<List<Article>>(articleServiceImpl.listArticles(page, pageSize));
   }
 
   @DeleteMapping("/article")
@@ -61,7 +61,7 @@ public class ArticleController {
   }
 
   @PutMapping("/article")
-  public Article updateArticle(@RequestBody ArticleParam param) {
+  public Resp<Article> updateArticle(@RequestBody ArticleParam param) {
     Article article = new Article();
 
     article.setId(param.id);
@@ -70,6 +70,6 @@ public class ArticleController {
 
     Article art = articleServiceImpl.updateArticle(article);
 
-    return art;
+    return new Resp<Article>(art);
   }
 }

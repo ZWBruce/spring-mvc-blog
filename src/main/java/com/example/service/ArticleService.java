@@ -5,7 +5,7 @@ import java.util.List;
 
 
 public interface ArticleService {
-  public void insertArticle(Article article);
+  public Article insertArticle(Article article);
 
   public List<Article> listArticles(int page, int pageSize);
 

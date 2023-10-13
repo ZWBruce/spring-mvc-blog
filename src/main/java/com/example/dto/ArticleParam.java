@@ -2,15 +2,11 @@ package com.example.dto;
 
 
 public class ArticleParam {
-    private String title;
-    private String content;
+    public String title;
+    public String content;
+    public int id;
 
     public ArticleParam() {
-    }
-
-    public ArticleParam(String title, String content) {
-        this.title = title;
-        this.content = content;
     }
 
     // Getter 和 Setter 方法
@@ -18,15 +14,26 @@ public class ArticleParam {
         return title;
     }
 
-    public void setTitle(String title) {
+    public ArticleParam setTitle(String title) {
         this.title = title;
+        return this;
     }
 
     public String getContent() {
         return content;
     }
 
-    public void setContent(String content) {
+    public ArticleParam setContent(String content) {
         this.content = content;
+        return this;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public ArticleParam setId(int id) {
+        this.id = id;
+        return this;
     }
 }

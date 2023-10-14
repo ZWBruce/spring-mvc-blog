@@ -7,6 +7,10 @@
 # 生产环境
 1. 切到 tomcat 安装目录（/usr/local/Cellar/tomcat/10.1.14/libexec/webapps），运行 ./catalina.sh run（应该也可以通过设置 zsh 环境变量方式全局执行命令）
 2. 将 war 包 copy 到指定目录下，tomcat 每次启动时会自动解压并部署 war
+3. 手动解压：
+```
+jar -xf xxx.war
+```
 
 # 附录
 本地安装完成后日志：
@@ -19,6 +23,41 @@ To start tomcat now and restart at login:
 Or, if you don't want/need a background service you can just run:
   /usr/local/opt/tomcat/bin/catalina run
 ```
+
+常用的 Tomcat 命令：
+
+1. 启动 Tomcat 服务器：
+   ````
+   ./catalina.sh start
+   ```
+
+2. 停止 Tomcat 服务器：
+   ````
+   ./catalina.sh stop
+   ```
+
+3. 重启 Tomcat 服务器：
+   ````
+   ./catalina.sh restart
+   ```
+
+4. 查看 Tomcat 服务器状态：
+   ````
+   ./catalina.sh status
+   ```
+
+5. 查看 Tomcat 服务器日志：
+   ````
+   tail -f /usr/local/Cellar/tomcat/10.1.14/libexec/logs/catalina.out
+   ```
+
+6. 部署 WAR 文件：
+   将 WAR 文件复制到 Tomcat 的 `webapps` 目录下即可自动部署。
+
+7. 清理 Tomcat 工作目录：
+   ````
+   ./catalina.sh clean
+   ```
 
 结合 docker 使用：
 

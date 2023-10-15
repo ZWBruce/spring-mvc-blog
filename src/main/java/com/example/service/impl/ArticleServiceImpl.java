@@ -1,5 +1,6 @@
 package com.example.service.impl;
 
+import com.example.common.PageInfo;
 import com.example.entity.Article;
 import com.example.service.ArticleService;
 import java.util.List;
@@ -9,6 +10,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -33,10 +35,12 @@ public class ArticleServiceImpl implements ArticleService {
   }
 
   @Override
-  public List<Article> listArticles(int page, int pageSize) {
+  public PageInfo<Article> listArticles(int page, int pageSize) {
     Session session = sessionFactory.getCurrentSession();
 
-    Query<Article> query = session.createQuery("FROM Article");
+    Query<Article> query = session.createQuery("FROM Article order by updated_at DESC", Article.class);
+
+    List<Article> totalArticles = query.list();
 
     query.setFirstResult(pageSize * (page - 1));
 
@@ -44,7 +48,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     List<Article> articles = query.list();
 
-    return articles;
+    return new PageInfo<Article>(articles, page, totalArticles.size());
   }
 
   @Override

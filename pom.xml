@@ -123,6 +123,12 @@
       <artifactId>spring-beans</artifactId>
       <version>${spring.version}</version>
     </dependency>
+
+    <dependency>
+        <groupId>com.github.pagehelper</groupId>
+        <artifactId>pagehelper</artifactId>
+        <version>4.2.1</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>my-spring-mvc-blog</finalName>

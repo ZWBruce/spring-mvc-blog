@@ -1,10 +1,10 @@
 package com.example.controller;
 
+import com.example.common.PageInfo;
 import com.example.common.Resp;
 import com.example.dto.ArticleParam;
 import com.example.entity.Article;
 import com.example.service.impl.ArticleServiceImpl;
-import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -51,8 +51,8 @@ public class ArticleController {
   }
 
   @GetMapping("/articles")
-  public Resp<List<Article>> listArticles(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
-    return new Resp<List<Article>>(articleServiceImpl.listArticles(page, pageSize));
+  public Resp<PageInfo<Article>> listArticles(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+    return new Resp<PageInfo<Article>>(articleServiceImpl.listArticles(page, pageSize));
   }
 
   @DeleteMapping("/article")

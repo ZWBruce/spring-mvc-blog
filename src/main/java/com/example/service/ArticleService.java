@@ -1,13 +1,13 @@
 package com.example.service;
 
+import com.example.common.PageInfo;
 import com.example.entity.Article;
-import java.util.List;
 
 
 public interface ArticleService {
   public Article insertArticle(Article article);
 
-  public List<Article> listArticles(int page, int pageSize);
+  public PageInfo<Article> listArticles(int page, int pageSize);
 
   public void deleteArticle(int id);
 
